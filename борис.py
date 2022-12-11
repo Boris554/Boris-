@@ -1,0 +1,74 @@
+def welcome_speech(t):
+    print('''Добро пожаловать в игру - hangman 2000.
+          Ваша задача угадать загаданное слово за несколько попыток,иначе вас ждёт расплата!
+          Загаданное слово состоит из 8 букв {t}''')
+           
+
+def start_template(w):
+    return len(w) * ['_']
+
+def list_to_string_convert(t):
+    """
+    input: t - template (list)
+    output: s - list convered to string
+    """
+    s = ''
+    return s.join(t)
+
+def get_word(w):
+    """
+    input: w - list with strings (words)
+    output: for now: first element in list as string
+            TODO: random string from list
+    """        
+    return w[0]
+
+def user_input():
+    """
+    output: return built_in input() function
+    """
+    return input('Введите букву:')
+
+def build_template(t,w,g=''):
+    for i in range(len(w)):
+        if g == w[1]:
+            t[i] = g
+    return t
+
+def check_win(g):
+    for l in g:
+        if l == '_':
+            return True
+        return False
+
+def check_mistake(w, g):
+    flag = False
+    for i in w:
+        if  i == g:
+            flag = True
+    return flag
+
+def hangman():    
+    progress = True
+    word = ['апельсин']
+    lifes = 3
+
+    word_in_play = get_word(word)
+    template = start_template(word_in_play)
+    welcome_speech(list_to_string_convert(template))
+    while progress:
+        user_guess = user_input()
+        template = build_template,word_in_play, user_guess
+        guessed = list_to_string_convert(template)
+        print(f'Результат:{guessed}')
+        progress = check_win(guessed)
+
+        if not check_mistake(word_in_play, user_guess):
+            print(f'Осталось {lifes} попытки' )
+            lifes -=1
+
+        if lifes == 0:
+            print("Вы проиграли")
+        if not progress:
+            print("Вы выиграли")
+print(hangman())
