@@ -5,8 +5,10 @@ def welcome_speech(t):
            
 
 def start_template(w):
-    return len(w) * ['_']
-
+    t = []
+    for i in w:
+        t.append('_')
+    return t
 def list_to_string_convert(t):
     """
     input: t - template (list)
@@ -50,7 +52,7 @@ def check_mistake(w, g):
 
 def hangman():    
     progress = True
-    word = ['апельсин']
+    word = ['orange']
     lifes = 3
 
     word_in_play = get_word(word)
@@ -58,7 +60,7 @@ def hangman():
     welcome_speech(list_to_string_convert(template))
     while progress:
         user_guess = user_input()
-        template = build_template,word_in_play, user_guess
+        template = build_template(template, word_in_play, user_guess)
         guessed = list_to_string_convert(template)
         print(f'Результат:{guessed}')
         progress = check_win(guessed)
@@ -71,4 +73,5 @@ def hangman():
             print("Вы проиграли")
         if not progress:
             print("Вы выиграли")
-print(hangman())
+            
+hangman()
