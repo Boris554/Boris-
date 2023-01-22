@@ -2,6 +2,11 @@
 https://github.com/raferalston/python_basics.git
 
 import module 
+module.f()
+from module import *
+f()                плохой вариант
+from module import function as f
+f() 
 
 
 with open("new_file","r") as f:
