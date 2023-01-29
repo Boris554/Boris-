@@ -13,6 +13,10 @@ with open("new_file","r") as f:
   read_data = f.read()
   
  
- f = open(no_with,"w")
+f = open(no_with,"w")
  f.write('Hello world')
  f.close()
+
+
+with open('new_file', 'w+') as f:
+  f.write('Hello, world!!!)
